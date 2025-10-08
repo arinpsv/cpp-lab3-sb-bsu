@@ -1,18 +1,28 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 int main()
 {
 int k, i = 1, sum_k = 0, number;
-cout << " Enter the amount of integers to sum = "; cin >> k;
-if (k == 0) {
-cout << "k can not be equal to 0!";
-} else {
+cout << "Enter the amount of integers to sum = ";
+cin >> k;
+while (cin.fail()) {
+cout << "Invalid input! Please enter an integer for k: ";
+cin.clear();
+cin.ignore(10000, '\n');
+cin >> k;
+}
 do {
 cout << "Enter integer nr. " << i << ": ";
 cin >> number;
-sum_k += number; i++;
-} while (i <= k);
-cout << " The total sum of " << k << " integers is: " << sum_k;
+if (cin.fail()) {
+cout << "Invalid input! Please enter an integer." << endl;
+cin.clear();
+cin.ignore(10000, '\n');
+continue;
 }
+sum_k += number;
+i++;
+} while (i <= k);
+cout << "The total sum of " << k << " integers is: " << sum_k << endl;
 return 0;
 }
